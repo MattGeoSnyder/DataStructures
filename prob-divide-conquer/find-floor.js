@@ -6,12 +6,14 @@ function findFloor(arr, target) {
     let mid = Math.floor((left + right)/2);
 
     if (mid === 0 || mid === arr.length -1) {
-      return -1;
+      return arr[mid] <= target ? arr[mid] : -1;
     }
 
     if (arr[mid] > target && arr[mid-1] <= target) {
-      return mid;
+      return arr[mid-1];
     }
+
+    console.log(mid)
 
     if (arr[mid] > target) {
       right = mid - 1;
@@ -22,7 +24,5 @@ function findFloor(arr, target) {
 
   return -1;
 }
-
-findFloor([1, 2, 8, 10, 10, 12, 19], 20);
 
 module.exports = findFloor
