@@ -48,9 +48,15 @@ Of course, these can nested deeply and still work::
 
 def dump(s):
     """Print each square on a new line."""
+    if type(s) == list:
+        for square in s:
+            dump(square)
+    else:
+        print(s)
 
 
 if __name__ == "__main__":
     import doctest
+
     if doctest.testmod().failed == 0:
-        print "\n*** ALL TESTS PASS; NICE JOB!\n"
+        print("\n*** ALL TESTS PASS; NICE JOB!\n")

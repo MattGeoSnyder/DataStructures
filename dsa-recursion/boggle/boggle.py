@@ -108,12 +108,14 @@ def make_board(board_string):
     return board
 
 
-
-def find(board, word):
+def find(board, word, i=0, j=0, word_idx=0):
     """Can word be found in board?"""
+    if word_idx == len(word) - 1 and board[i][j] == word[word_idx]:
+        return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     if doctest.testmod().failed == 0:
         print("\n*** ALL TESTS PASSED; YOU FOUND SUCCESS! ***\n")
