@@ -43,25 +43,32 @@ class BinaryTree {
   maxSum(root=this.root) {
     if (!root) return 0;
 
-    const leftSum = this.maxSum(root.left);
-    const rightSum = this.maxSum(root.right);
+    let max = -1*Infinity;
 
-    return root.val + Math.max(leftSum, rightSum);
+    let left = this.maxSum(root.left);
+    let right = this.maxSum(root.right);
+
   }
 
   /** nextLarger(lowerBound): return the smallest value in the tree
    * which is larger than lowerBound. Return null if no such value exists. */
 
   nextLarger(lowerBound) {
-    let lub = null;
+    let lub = Infinity;
+
+    if (!this.root) return null;
+
     const stack = [this.root];
     while (stack.length > 0) {
       const curr = stack.pop();
+      console.log(curr);
       if (lowerBound < curr.val && curr.val < lub){
         lub = curr.val
       }
+      if (curr.left) stack.push(curr.left);
+      if (curr.right) stack.push(curr.right);
     }
-    return lub;
+    return lub === Infinity ? null : lub;
   }
 
   /** Further study!
