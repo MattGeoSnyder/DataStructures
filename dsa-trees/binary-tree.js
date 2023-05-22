@@ -41,13 +41,23 @@ class BinaryTree {
    * The path doesn't need to start at the root, but you can't visit a node more than once. */
 
   maxSum(root=this.root) {
-    if (!root) return 0;
+    let globalMax = -1*Infinity;
 
-    let max = -1*Infinity;
+    function maxSumHelper(root) {
+      if (!root) return 0;
 
-    let left = this.maxSum(root.left);
-    let right = this.maxSum(root.right);
+      let left = maxSumHelper(root.left);
+      let right = maxSumHelper(root.right);
+      
+      let localMax = root.val + left + right;
+      if (localMax > globalMax) globalMax = localMax;
 
+      return Math.max(Math.max(left, right) + root.val, root.val);
+    }
+
+
+    maxSumHelper(root);
+    return root ? globalMax : 0;
   }
 
   /** nextLarger(lowerBound): return the smallest value in the tree
@@ -76,7 +86,7 @@ class BinaryTree {
    * (i.e. are at the same level but have different parents. ) */
 
   areCousins(node1, node2) {
-
+    
   }
 
   /** Further study!
