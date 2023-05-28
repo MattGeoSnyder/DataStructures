@@ -13,7 +13,6 @@ function findFloor(arr, target) {
       return arr[mid-1];
     }
 
-    console.log(mid)
 
     if (arr[mid] > target) {
       right = mid - 1;
